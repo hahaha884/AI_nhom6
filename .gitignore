@@ -1,0 +1,20 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model & data (không nên push)
+Features/
+Dataset/
+
+# Upload file tạm
+static/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db

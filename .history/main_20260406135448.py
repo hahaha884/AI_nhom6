@@ -188,7 +188,7 @@ def generate_frames(video_path):
                 send_email(email_subject, email_body, frame)
                 mail_sent = True
         else:
-            cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 255, 0), 2)
+            cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 255, 0), 2)
 
         ret, jpeg = cv2.imencode('.jpg', frame)
         frame = jpeg.tobytes()

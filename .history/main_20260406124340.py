@@ -137,10 +137,11 @@ def send_email(subject, body, attachment=None):
 
 
 def generate_frames(video_path):
-    model = load_model('violence_model.keras', compile=False)
+    model = load_model('model_VGG19.h5', compile=False)
+
     image_height, image_width = 64, 64  # 128,128
     sequence_length = 16
-    class_list = ["Nonviolence", "Violence"]
+    class_list = ["Noniolence", "Violence"]
 
     video_reader = cv2.VideoCapture(video_path)
     fps = video_reader.get(cv2.CAP_PROP_FPS)
@@ -180,7 +181,7 @@ def generate_frames(video_path):
         text_size = frame.shape[0] / 4  # Adjust the denominator to get the desired text size
 
         if predicted_class_name == "Violence":
-            cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 0, 255), 2)
+            cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 0, 255), 2)
             email_subject = 'Violence Detected!!!'
             email_body = '<p>We have detected violence in the video, please check.</p>'
             alart_count += 1
@@ -188,7 +189,7 @@ def generate_frames(video_path):
                 send_email(email_subject, email_body, frame)
                 mail_sent = True
         else:
-            cv2.putText(frame, text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 255, 0), 2)
+            cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, text_size / 100, (0, 255, 0), 2)
 
         ret, jpeg = cv2.imencode('.jpg', frame)
         frame = jpeg.tobytes()
